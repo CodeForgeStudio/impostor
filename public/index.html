@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question Impostor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="app-shell">
+      <section class="hero-card screen active" id="homeScreen">
+        <div class="eyebrow">Multiplayer party game</div>
+        <h1>Question Impostor</h1>
+        <p class="hero-copy">
+          Create a lobby, invite your group, reveal your secret question when you are
+          ready, and discuss outside the site to figure out who got the odd one.
+        </p>
+
+        <div class="home-actions">
+          <button class="primary-btn" id="showCreateBtn">Create Lobby</button>
+          <button class="secondary-btn" id="showJoinBtn">Join Lobby</button>
+        </div>
+
+        <div class="form-panels">
+          <form class="panel form-panel active" id="createForm">
+            <h2>Create a lobby</h2>
+            <label for="createNameInput">Player name</label>
+            <input
+              id="createNameInput"
+              name="playerName"
+              type="text"
+              maxlength="24"
+              autocomplete="nickname"
+              placeholder="Enter your name"
+              required
+            />
+            <button class="primary-btn" type="submit">Create and Join</button>
+          </form>
+
+          <form class="panel form-panel hidden" id="joinForm">
+            <h2>Join a lobby</h2>
+            <label for="joinNameInput">Player name</label>
+            <input
+              id="joinNameInput"
+              name="playerName"
+              type="text"
+              maxlength="24"
+              autocomplete="nickname"
+              placeholder="Enter your name"
+              required
+            />
+
+            <label for="joinCodeInput">Lobby code</label>
+            <input
+              id="joinCodeInput"
+              name="lobbyCode"
+              type="text"
+              maxlength="6"
+              autocomplete="off"
+              placeholder="ABC123"
+              required
+            />
+            <button class="primary-btn" type="submit">Join Lobby</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="screen" id="lobbyScreen">
+        <div class="topbar">
+          <div>
+            <div class="eyebrow">Live lobby</div>
+            <h2 id="lobbyTitle">Lobby</h2>
+          </div>
+          <div class="status-chip" id="connectionStatus">Connecting...</div>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel lobby-panel">
+            <div class="card-header">
+              <div>
+                <span class="subtle-label">Lobby code</span>
+                <div class="code-row">
+                  <span class="code-pill" id="lobbyCodeText">------</span>
+                  <button class="ghost-btn" id="copyCodeBtn" type="button">Copy</button>
+                </div>
+              </div>
+              <button class="ghost-btn" id="leaveLobbyBtn" type="button">Leave</button>
+            </div>
+
+            <div class="players-header">
+              <h3>Players</h3>
+              <span class="player-count" id="playerCountText">0 / 20</span>
+            </div>
+            <div class="players-list" id="playersList"></div>
+
+            <div class="host-controls" id="hostControls">
+              <button class="primary-btn" id="startGameBtn" type="button">Start Game</button>
+              <button class="secondary-btn" id="nextRoundBtn" type="button">Next Round</button>
+              <button class="danger-btn" id="restartGameBtn" type="button">Restart Game</button>
+            </div>
+          </article>
+
+          <article class="panel question-panel">
+            <div class="card-header">
+              <div>
+                <span class="subtle-label">Private prompt</span>
+                <h3 id="roundTitle">Waiting to start</h3>
+              </div>
+            </div>
+
+            <div class="question-box hidden-state" id="questionBox">
+              <div class="question-status" id="questionStatus">Question hidden</div>
+              <p class="question-text" id="questionText">
+                Start the game to get your prompt, then reveal it whenever you want.
+              </p>
+            </div>
+
+            <button class="primary-btn" id="revealQuestionBtn" type="button">
+              Reveal Question
+            </button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast-stack" id="toastStack"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
