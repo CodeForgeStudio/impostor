@@ -1,0 +1,22 @@
+{
+  "name": "question-impostor",
+  "version": "1.0.0",
+  "description": "A multiplayer Question Impostor game using Node.js, Express, Socket.IO, and vanilla JavaScript.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "game",
+    "multiplayer",
+    "socket.io",
+    "express",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
